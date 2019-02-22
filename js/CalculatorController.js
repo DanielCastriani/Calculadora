@@ -1,6 +1,7 @@
 class CalculatorController {
     constructor() {
         this._calcDisplay = document.querySelector("#display_txt");
+        this._clickAudio = new Audio('click.mp3');
 
         this.initialize_calc();
         this.initialize_buttons();
@@ -45,6 +46,11 @@ class CalculatorController {
 
     error() {
         this.displayText = 'Error'
+    }
+
+    playAudio() {
+        this._clickAudio.currentTime = 0.9;
+        this._clickAudio.play();
     }
 
     onClick(btn) {
@@ -103,6 +109,7 @@ class CalculatorController {
                 break;
         }
         this.updateDisplay();
+        this.playAudio();
         console.log(this._exp);
     }
 
@@ -121,7 +128,8 @@ class CalculatorController {
             if (isNaN(opr)) {
                 this._exp.push(opr);
             } else {
-                this._exp[this._exp.length - 1] = parseFloat(this._exp[this._exp.length - 1] + opr).toString();
+                if (this._exp[this._exp.length - 1].length < 15)
+                    this._exp[this._exp.length - 1] = parseFloat(this._exp[this._exp.length - 1] + opr).toString();
             }
         }
         if (this._exp.length > 3) {
@@ -189,8 +197,6 @@ class CalculatorController {
         }
     }
 
-
-    //#region getters and setters
     set displayText(value) {
         this._calcDisplay.innerHTML = value;
     }
@@ -198,7 +204,6 @@ class CalculatorController {
     get displayText() {
         return this._calcDisplay.innerHTML;
     }
-    //#endregion
 }
 
 let ctr = new CalculatorController();
