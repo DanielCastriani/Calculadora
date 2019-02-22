@@ -1,0 +1,38 @@
+
+button {
+    width: 25%;
+    height: 75px;
+    margin-right: -6px;
+    margin-bottom: -1px;
+}
+.txt{ 
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    font-size: 35px; 
+    font-weight: bold;  
+}
+.btn_num{
+    border-color: #000000; 
+    background: #f1f1f1;
+    color: #000000;
+    border-radius:0;
+    font-weight: bold;
+}
+
+.btn_opr{
+    border-color: #000000; 
+    background: #d6d6d6;
+    color: #000000;
+    border-radius:0;
+}
+
+.display{
+    height: 150px;
+    width: 99.3%;
+    margin-top: 25%;
+    margin-bottom: -1px;
+    background-color: #cecece;
+    border: 1px solid #000000; 
+    position: relative;
+}
