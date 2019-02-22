@@ -31,9 +31,11 @@ class CalculatorController {
     }
 
     getLastElm(isNum = true) {
-        for (let i = this._exp.length; i >= 0; i--) {
-            if (!isNaN(this._exp[i]) == isNum)
+        isNum = !isNum;
+        for (let i = this._exp.length - 1; i >= 0; i--) {
+            if (isNaN(this._exp[i]) == isNum) {
                 return this._exp[i];
+            }
         }
     }
 
@@ -129,8 +131,20 @@ class CalculatorController {
 
     calc() {
         try {
+
+            let lopr = this.getLastElm(false);
+            if (lopr)
+                this._lastOper = lopr;
+
+            if (this._exp.length < 3) {
+                this._exp = [this._exp[0], this._lastOper, this._lastNum];
+            }
+            this._lastNum = this.getLastElm();
+
+
             if (this._exp.length == 3) {
                 this._exp = [this.evalExp()];
+
             } else {
                 if (this._exp.length > 3) {
                     let last = this._exp.pop();
@@ -138,7 +152,7 @@ class CalculatorController {
                 }
             }
         } catch (e) {
-            error();
+            this.error();
         }
     }
 
